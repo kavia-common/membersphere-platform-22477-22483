@@ -1,0 +1,58 @@
+.topnav {
+  height: 58px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 120;
+  box-shadow: 0 1px 0 var(--border-color);
+}
+
+.topnav-hamburger {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  margin-right: 1rem;
+  margin-left: 0;
+  cursor: pointer;
+  color: var(--text-primary);
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .topnav-hamburger {
+    display: inline-block;
+  }
+}
+
+.topnav-brand {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.topnav-actions {
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle {
+  margin-left: 1.25rem;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 5px 14px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.theme-toggle:hover {
+  opacity: 0.85;
+}

@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/Layout';
 import './App.css';
+
+// Dummy route skeletons
+const Admin = () => <div><h2>Admin Portal</h2><p>Admin dashboard goes here.</p></div>;
+const Member = () => <div><h2>Member Portal</h2><p>Member dashboard goes here.</p></div>;
+const Events = () => <div><h2>Events</h2><p>Event management interface goes here.</p></div>;
+const Dashboard = () => <div><h2>Dashboard</h2><p>Role-based dashboard with charts/tables.</p></div>;
+const Login = () => <div><h2>Login</h2><p>Login page for all users.</p></div>;
 
 // PUBLIC_INTERFACE
 function App() {
@@ -16,33 +24,22 @@ function App() {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
 
+  // Expand with role management as needed in future
+  // For now, just simple routes for modularity
   return (
-    <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout theme={theme} onToggleTheme={toggleTheme}>
+        <Routes>
+          <Route path="/admin/*" element={<Admin />} />
+          <Route path="/member/*" element={<Member />} />
+          <Route path="/events/*" element={<Events />} />
+          <Route path="/dashboard/*" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          {/* Add other role-based, modular routes as needed */}
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 
